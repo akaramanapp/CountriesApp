@@ -10,6 +10,13 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { RestProvider } from '../providers/rest/rest';
+import { HttpModule } from '@angular/http';
+import { SearchFilterPipe } from '../search.pipe';
+import { VirtualScrollModule } from 'angular2-virtual-scroll';
+import { ListItemComponent } from "../pages/home/list-item.component";
+import { Camera } from '@ionic-native/camera';
+import { DetailPage } from "../pages/detail/detail";
 
 @NgModule({
   declarations: [
@@ -17,11 +24,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    SearchFilterPipe,
+    ListItemComponent,
+    DetailPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpModule,
+    VirtualScrollModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -29,12 +41,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    DetailPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    RestProvider,
+    Camera
   ]
 })
 export class AppModule {}
